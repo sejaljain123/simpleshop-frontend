@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AuthState from './context/AuthContext/AuthState';
+import { Route, Routes } from 'react-router-dom';
+import Landing from './pages/Landing/Landing';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Invoice from './pages/Invoice/Invoice';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthState>
+    <Routes>
+    <Route path="/" element={<Landing/>} />
+    <Route path="/dashboard" element={<Dashboard/>} />
+    <Route path="*" element={<h1>404 Not Found</h1>} />
+    <Route path="/invoice" element={<Invoice />} />
+    </Routes>
+    </AuthState>
   );
+  ;
 }
 
 export default App;
