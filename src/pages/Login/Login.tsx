@@ -20,37 +20,43 @@ const Login = () => {
         });
     };
 
+
+
     const handleSubmit = (e: any) => {
         e.preventDefault();
         login(formData);
+   
         if(isAuthenticated){
             navigate('/dashboard');
         }
-        else{
-           alert('Invalid Credentials');
-        }
+    
+        
         setFormData ({
             username: '',
             password: '',
         });
     };
 
+    
+
+
+
     return (
+        
         <div className='flex justify-between items-center h-screen w-screen' >
-            <div className='bg-[#1976d2] w-1/2 h-full flex justify-center items-center'>
-            <img src="/images/bg.webp" alt="Google Logo" width={500} height= {500} />
-            </div>
-            <div className='w-1/2 h-full flex justify-center items-center'>
-            <div className='flex h-[40vh] justify-around items-center flex-col text-center'>
-                <h1>Welcome!!</h1>
-            <h3>Enter the credentials </h3>
-            <Input label="Username" name="username" type="text" value={formData.username} onChange={handleChange} />
-            <Input label="Password" name="password" type="password" value={formData.password} onChange={handleChange} />
-            <Button type="submit" onClick={handleSubmit} label="Login" />
-            </div>
-            </div>
+        <div className='bg-[#8ba8fc] w-1/2 h-full flex justify-center items-center'>
+        <img src="/images/bg.webp" alt="Google Logo" width={500} height= {500} />
         </div>
+        <div className='w-1/2 h-full flex flex-col justify-center items-center'>
+            <h1 className='text-3xl'>Welcome Back!</h1>
+        <div className='flex h-[40vh] items-center flex-col text-center w-2/3 justify-evenly'>
+        <Input label="Username" name="username" type="text" value={formData.username} onChange={handleChange} />
+        <Input label="Password" name="password" type="password" value={formData.password} onChange={handleChange} />
+        <Button type="submit" onClick={handleSubmit} label="Login" />
+        </div>
+        </div>
+    </div>
     );
-    };
+};
 
 export default Login;
