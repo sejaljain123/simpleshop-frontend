@@ -1,19 +1,19 @@
 interface InputProps {
     label: string;
-    name: string;
+    name?: string;
     type: string;
-    value: string;
-    onChange: (e: any) => void;
+    value?: string | number;
+    onChange?: (e: any) => void;
+    styles?: string;
     }
 
 const Input = (props: InputProps) => {
-    const { label, name, type, value, onChange, ...rest } = props;
+    const { label, name, type, value, onChange, styles, ...rest } = props;
     
     return (
-        <div className="input">
-      
+        <div>
         <input
-            className="input input-bordered w-full max-w-xs"
+            className={`input w-full max-w-xs ${styles}`}
             placeholder={label}
             name={name}
             type={type}
