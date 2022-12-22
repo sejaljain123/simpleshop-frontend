@@ -13,7 +13,7 @@ const Input = (props: InputProps) => {
     return (
         <div>
         <input
-            className={`input w-full max-w-xs ${styles}`}
+            className={`input w-full bg-slate-100  ${styles}`}
             placeholder={label}
             name={name}
             type={type}
