@@ -13,7 +13,7 @@ const PrivewModal = () => {
     };
     return (
         <>
-            <label htmlFor="my-modal-4" className="btn btn-primary" onClick={getPDFFile}>open modal</label>
+            <label htmlFor="my-modal-4" className="btn btn-primary w-1/2 m-1" onClick={getPDFFile}>Preview</label>
             <input type="checkbox" id="my-modal-4" className="modal-toggle" />
             <label htmlFor="my-modal-4" className="modal cursor-pointer">
                 <label className="modal-box relative h-[80vh] w-[60rem]" htmlFor="">
