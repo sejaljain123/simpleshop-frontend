@@ -223,15 +223,16 @@ const InvoiceTemplate = () => {
           </div>
           {formData.gst ? (
             <>
-              <div className="grid grid-cols-3 gap-x-4 mt-2">
+              <div className="grid grid-cols-2 mt-2">
                 <span className={spanStyles}>CGST (%): </span>
+                <div className="flex">
                 <Input
                   label="Enter CGST"
                   name="gst"
                   type="number"
                   value={cgst ? cgst : undefined}
                   onChange={(e) => setCGST(e.target.value)}
-                  styles=" w-40"
+                  styles="w-4/5"
                 />
                 <Input
                   label="Calculated CGST"
@@ -241,16 +242,19 @@ const InvoiceTemplate = () => {
                   styles=" text-right"
                   {...disabled}
                 />
+                </div>
               </div>
-              <div className="grid grid-cols-3 gap-x-4 mt-2">
+              <div className="grid grid-cols-2  mt-2">
                 <span className={spanStyles}>SGST (%): </span>
+                <div className="flex ">
+
                 <Input
                   label="Enter SGST"
                   name="sgst"
                   type="number"
                   value={sgst ? sgst : undefined}
                   onChange={(e) => setSGST(e.target.value)}
-                  styles="bg-slate-00 w-40 "
+                  styles="bg-slate-00 w-4/5 "
                 />
                 <Input
                   label="Calculated SGST"
@@ -260,6 +264,7 @@ const InvoiceTemplate = () => {
                   styles=" text-right"
                   {...disabled}
                 />
+                </div>
               </div>
             </>
           ) : null}
