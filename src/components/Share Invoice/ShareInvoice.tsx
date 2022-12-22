@@ -29,7 +29,6 @@ const ShareInvoice = () => {
             type="radio"
             name="radio-1"
             className="radio-xs radio-primary"
-            checked
           />
           <span className="text-md px-2">Cash</span>
         </label>

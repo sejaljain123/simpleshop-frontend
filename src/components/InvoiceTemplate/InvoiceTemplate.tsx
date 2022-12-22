@@ -203,7 +203,6 @@ const InvoiceTemplate = () => {
               type="radio"
               name="radio-1"
               className="radio-xs radio-primary"
-              checked
               onClick={() => updateFormData("gst", false)}
             />
             <span className="text-md px-2">No</span>
