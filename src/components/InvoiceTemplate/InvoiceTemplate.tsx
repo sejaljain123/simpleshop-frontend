@@ -4,6 +4,7 @@ import Input from "../../components/Input/Input";
 import { useState } from "react";
 import Button from "../Button/Button";
 import invoiceData from "./InvoiceData";
+import createInvoice from '../../api/createInvoice';
 
 const inputStyles = "m-1 bg-slate-100 w-4/5";
 const spanStyles = "text-md py-2 text-base text-blue-600";
@@ -16,6 +17,13 @@ const InvoiceTemplate = () => {
   const [subTotal, setSubTotal] = useState(0.0);
   const [cgst, setCGST] = useState(0);
   const [sgst, setSGST] = useState(0);
+
+  const getInvoiceId = async() => {
+    const response = await createInvoice(formData);
+    console.log(response);
+    updateFormData('invoiceId', response.data.invoiceId);
+  };
+  
   const updateFormData = (field: string, value: any) => {
     setFormData({
       ...formData,
@@ -107,7 +115,7 @@ const InvoiceTemplate = () => {
       <hr className="p-2" />
       <div className="flex justify-between flex-wrap">
         <div className="flex flex-col">
-          <span className="text-xl p-2 text-base font-bold">Bill from:</span>
+          <span className="text-xl text-base font-bold">Bill from:</span>
           <span className={spanStyles2}>SATISH ABHUSHAN KENDRA</span>
           <span className={spanStyles2}>
             Pachraha, Gwalior Road, Pachraha, Etawah,
