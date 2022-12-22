@@ -26,7 +26,6 @@ const ShareInvoice = () => {
           type="text"
           {...{ disabled: true }}
         />
-
         <div className="flex flex-col">
           <span className="text-md my-4 font-medium">Payment Method</span>
           <label className="flex items-center">
