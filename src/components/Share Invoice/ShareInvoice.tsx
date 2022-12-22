@@ -1,36 +1,35 @@
-import { FiSend } from "react-icons/fi";
 import Input from "../Input/Input";
 import PrivewModal from '../PreviewModal/PreviewModal';
 
 const ShareInvoice = () => {
   return (
-    <div className="p-3 flex flex-col ">
+    <div className=" px-5 flex flex-col ">
       <button className="btn btn-primary m-1">
-        <FiSend />
-        Share Invoice
+        Generate Invoice
       </button>
-      <div className="flex justify-around">
-      <button className="btn m-1 w-1/2">Download</button>
+      <div className="flex justify-between my-3">
+      <button className="btn w-32">Download</button>
       <PrivewModal />
       </div>
       <hr />
-      <span className="text-md mt-4 p-3 font-medium">
+      <span className="text-md my-4 font-medium">
         Currency{" "}
+        </span>
         <Input
           label="INR (Indian National Rupee)"
           name="currency"
           type="text"
-          styles="m-1"
           {...{ disabled: true }}
         />
-      </span>
-      <div className="flex flex-col p-3">
-        <span className="text-md mt-4 p-3 font-medium">Payment Method</span>
+     
+      <div className="flex flex-col">
+        <span className="text-md my-4 font-medium">Payment Method</span>
         <label>
           <input
             type="radio"
             name="radio-1"
             className="radio-xs radio-primary"
+            checked
           />
           <span className="text-md px-2">Cash</span>
         </label>
