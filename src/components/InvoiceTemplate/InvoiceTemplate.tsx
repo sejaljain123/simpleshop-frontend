@@ -6,7 +6,6 @@ import Button from "../Button/Button";
 import invoiceData from "./InvoiceData";
 import createInvoice from '../../api/createInvoice';
 
-const inputStyles = "m-1 bg-slate-100 w-4/5";
 const spanStyles = "text-md py-2 text-base text-blue-600";
 const spanStyles2 = "text-md py-2 text-base font-medium";
 const disabled = { disabled: true };
@@ -91,57 +90,51 @@ const InvoiceTemplate = () => {
 
   return (
     <div className="rounded-lg bg-white w-4/5 p-10">
-      <div className="flex justify-center rounded-full w-20 shadow-lg m-auto">
-        <MdCloudUpload size={50} />
-      </div>
-      <div className="flex flex-wrap justify-between">
+      <div className="flex justify-between  w-full ">
         <div className="flex items-center">
-          <label className="text-md font-medium">Date:</label>
+          <label className="text-md font-medium mr-2">Date:</label>
           <Input
             label="Date"
             name="date"
             type="date"
             onChange={(e) => updateFormData("date", e.target.value)}
           />
+
         </div>
+        <MdCloudUpload size={50} />
+
         <div className="flex items-center">
-          <label className="text-md font-medium">Due Date:</label>
+          <label className="text-md font-medium mr-2">Due Date:</label>
           <Input label="Date" name="date" type="date" />
         </div>
       </div>
-      <span className="font-bold text-center text-lg">
-        <h1>INVOICE #{invoiceData.id}</h1>
-      </span>
-      <hr className="p-2" />
-      <div className="flex justify-between flex-wrap">
+
+      <h1 className="font-bold text-center text-lg">INVOICE #{invoiceData.id}</h1>
+      <hr />
+      <div className="flex justify-between mt-4">
         <div className="flex flex-col">
-          <span className="text-xl text-base font-bold">Bill from:</span>
-          <span className={spanStyles2}>SATISH ABHUSHAN KENDRA</span>
-          <span className={spanStyles2}>
+          <p className="text-base font-bold mb-2">Bill from:</p>
+          <p className="text-base font-bold mt-2">SATISH ABHUSHAN KENDRA</p>
+          <span className="text-sm mt-2">
             Pachraha, Gwalior Road, Pachraha, Etawah,
             <br /> 206001, Uttar Pradesh
           </span>
         </div>
         <div className="flex flex-col">
-          <span className="text-xl p-2 text-base font-bold">Bill to:</span>
+          <span className="text-base font-bold mb-2">Bill to:</span>
           <Input
             label="Name"
             name="name"
             type="text"
             onChange={(e) => updateFormData("customer_name", e.target.value)}
-            styles={inputStyles}
+            styles=""
           />
-          <Input
-            label="Address"
-            name="address"
-            type="text"
-            onChange={(e) => updateFormData("customer_address", e.target.value)}
-            styles={inputStyles}
-          />
+          <textarea className="textarea mt-4 bg-slate-100  " placeholder="Address" name="address" onChange={(e) => updateFormData("customer_address", e.target.value)}></textarea>
+
         </div>
       </div>
       <hr className="my-2" />
-      <div className="grid grid-cols-5 text-center">
+      <div className="grid grid-cols-5 text-left gap-x-5">
         <span>Item Name</span>
         <span>Weight (gm)</span>
         <span>Rate (per 10 gm)</span>
@@ -151,14 +144,14 @@ const InvoiceTemplate = () => {
       <hr className="my-2" />
       {formData.items.map((item, index) => {
         return (
-          <div className="grid grid-cols-5 mt-1 px-1">
+          <div className="grid grid-cols-5 gap-x-5 mt-1">
             <Input
               label="Item Name"
               name="name"
               type="text"
               value={item.name}
               onChange={(e) => updateItems(index, "name", e.target.value)}
-              styles={inputStyles}
+              styles=""
             />
             <Input
               label="Weight"
@@ -166,7 +159,7 @@ const InvoiceTemplate = () => {
               type="number"
               value={item.weight}
               onChange={(e) => updateItems(index, "weight", e.target.value)}
-              styles={inputStyles}
+              styles=""
             />
             <Input
               label="Rate"
@@ -174,33 +167,34 @@ const InvoiceTemplate = () => {
               type="number"
               value={item.rate}
               onChange={(e) => updateItems(index, "rate", e.target.value)}
-              styles={inputStyles}
+              styles=""
             />
             <Input
               label="Amount"
               name="amount"
               type="text"
-              value={formData.items[index].amount}
-              styles={inputStyles}
+              value={item.amount}
+              styles=""
               {...disabled}
             />
             {isFirstItem() ? (
               <MdDelete
-                className="m-auto cursor-pointer"
+                className="cursor-pointer"
                 onClick={() => removeItem(index)}
                 size={30}
               />
             ) : (
-              <MdDelete className="m-auto" size={30} color="gray" />
+              <MdDelete className="cursor-pointer" size={30} color="gray" />
             )}
           </div>
         );
       })}
-      <Button type="button" label="Add Item" onClick={() => addItem()} />
       <hr className="my-2" />
-      <div className="flex justify-between">
-        <div className="flex flex-col w-[50%]">
-          <span className="text-md py-2 text-base">
+      <span className="text-[#256df1] cursor-pointer" onClick={addItem} > Add Item</span>
+      <hr className="my-2" />
+      <div className="flex justify-between mt-4">
+        <div className="flex flex-col w-1/3">
+          <span className="text-base">
             Does your invoice include GST:{" "}
           </span>
           <label className="cursor-pointer w-1/5 flex items-center">
@@ -217,107 +211,123 @@ const InvoiceTemplate = () => {
               type="radio"
               name="radio-1"
               className="radio-xs radio-primary"
+              checked
               onClick={() => updateFormData("gst", false)}
             />
             <span className="text-md px-2">No</span>
           </label>
         </div>
-        <div className="flex content-end flex-col">
-          <div className="flex justify-between items-center">
-            <span className={spanStyles2}>Subtotal (Rs): </span>
+        <div className="flex flex-col w-1/2  ">
+          <div className="grid grid-cols-2">
+            <span className={spanStyles2}>Sub Total: </span>
             <Input
-              label="SubTotal"
-              name="subtotal"
+              label="Sub Total"
+              name="Sub Total"
               type="text"
               value={subTotal}
-              styles="input-ghost w-4/5 m-1"
+              styles=" text-right"
+              {...disabled}
             />
           </div>
           {formData.gst ? (
-            <div className="flex flex-col">
-              <div className="flex items-center">
+            <>
+              <div className="grid grid-cols-2 mt-2">
                 <span className={spanStyles}>CGST (%): </span>
+                <div className="flex">
                 <Input
                   label="Enter CGST"
                   name="gst"
                   type="number"
                   value={cgst ? cgst : undefined}
                   onChange={(e) => setCGST(e.target.value)}
-                  styles="input-ghost w-4/5 m-1 "
+                  styles="w-4/5"
                 />
                 <Input
                   label="Calculated CGST"
                   name="calculatedCGST"
                   type="text"
                   value={cal_cgst}
-                  styles="input-ghost w-4/5 m-1 "
+                  styles=" text-right"
+                  {...disabled}
                 />
+                </div>
               </div>
-              <div className="flex items-center">
+              <div className="grid grid-cols-2  mt-2">
                 <span className={spanStyles}>SGST (%): </span>
+                <div className="flex ">
+
                 <Input
                   label="Enter SGST"
                   name="sgst"
                   type="number"
                   value={sgst ? sgst : undefined}
                   onChange={(e) => setSGST(e.target.value)}
-                  styles="input-ghost w-4/5 m-1"
+                  styles="bg-slate-00 w-4/5 "
                 />
                 <Input
                   label="Calculated SGST"
                   name="calculatedSGST"
                   type="text"
                   value={cal_sgst}
-                  styles="input-ghost w-4/5 m-1"
+                  styles=" text-right"
+                  {...disabled}
                 />
+                </div>
               </div>
-            </div>
+            </>
           ) : null}
-          <div className="flex justify-between items-center">
+          <div className="grid grid-cols-2 mt-2">
+
             <span className={spanStyles}>Add Discount: </span>
+
             <Input
               label="Add discount"
               name="discount"
               type="number"
               value={formData.discount ? formData.discount : undefined}
               onChange={(e) => updateFormData("discount", e.target.value)}
-              styles="input-ghost w-4/5 m-1"
+              styles = "text-right"
             />
           </div>
-          <hr className="py-0" />
-          <div className="flex justify-between items-center">
+          <div className="grid grid-cols-2 mt-2">
+
             <span className={spanStyles2}>Total Amount (Rs):</span>
             <Input
               label="Total Amount"
               name="total_amount"
               type="text"
               value={totalAmount}
-              styles="m-1 w-4/5"
+              styles=" text-right"
+              {...disabled}
             />
           </div>
-          <div className="flex justify-between items-center">
+          <div className="grid grid-cols-2 mt-2">
             <span className={spanStyles2}>Received Amount (Rs):</span>
             <Input
               label="Received Amount"
               name="received_amount"
-              type="text"
+              type="number"
               onChange={(e) =>
                 updateFormData("received_amount", e.target.value)
               }
-              styles="m-1 w-4/5"
+              styles = "text-right"
+        
             />
           </div>
-          <div className="flex justify-between items-center">
+          <div className="grid grid-cols-2 mt-2">
             <span className={spanStyles2}>Balance Amount (Rs):</span>
+
             <Input
               label="Balance Amount"
               name="balance_amount"
               type="text"
               value={balanceAmount}
-              styles="m-1 w-4/5"
+              styles=" text-right"
+              {...disabled}
             />
           </div>
         </div>
+
       </div>
       <hr className="my-2" />
       <div className="flex flex-col">
