@@ -16,7 +16,7 @@ const invoiceData = {
   discount: 0.00,
   notes: "",
   received_amount: 0.00,
-  payment_type: ""
+  payment_type: "cash"
 };
 
 export default invoiceData;
