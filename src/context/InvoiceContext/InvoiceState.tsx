@@ -5,7 +5,6 @@ import createInvoice from "../../api/createInvoice";
 
 const InvoiceState = (props: any) => {
   const [formData, setFormData] = useState(invoiceData);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [items, setItems] = useState({});
   const [subTotal, setSubTotal] = useState(0.0);
   const [invoice, setInvoice] = useState({
