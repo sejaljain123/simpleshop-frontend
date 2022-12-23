@@ -1,7 +1,6 @@
 /* eslint-disable react/style-prop-object */
 import { useNavigate } from "react-router-dom";
 import Button from '../../components/Button/Button';
-import PreviewModal from '../../components/PreviewModal/PreviewModal';
 
 const Dashboard = () => {
     const navigate = useNavigate();
