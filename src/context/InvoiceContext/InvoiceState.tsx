@@ -1,12 +1,27 @@
 import { useState } from "react";
 import invoiceData from "../../components/InvoiceTemplate/InvoiceData";
 import InvoiceContext from "./InvoiceContext";
+import createInvoice from "../../api/createInvoice";
 
 const InvoiceState = (props: any) => {
   const [formData, setFormData] = useState(invoiceData);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [items, setItems] = useState({});
   const [subTotal, setSubTotal] = useState(0.0);
+  const [invoice, setInvoice] = useState({
+    invoice_id: 0,
+    fileName: "",
+  });
+
+
+  const generateInvoice = async () => {
+    const response = await createInvoice(formData);
+    setInvoice({
+      invoice_id: response.data.invoice_id,
+      fileName: response.data.fileName,
+    });
+    return;
+  }
   
   const updateFormData = (field: string, value: any) => {
     setFormData({
@@ -73,6 +88,8 @@ const InvoiceState = (props: any) => {
         addItem,
         removeItem,
         subTotal,
+        invoice,
+        generateInvoice
       }}
     >
       {props.children}

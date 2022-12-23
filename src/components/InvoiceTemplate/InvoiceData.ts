@@ -1,6 +1,6 @@
 const invoiceData = {
   id: "",
-  date: "",
+  date: Date.now(),
   customer_name: "",
   customer_address: "",
   items: [

@@ -1,22 +1,18 @@
-import { useContext } from "react";
+import { useContext,} from "react";
 import InvoiceContext from "../../context/InvoiceContext/InvoiceContext";
 import Input from "../Input/Input";
 import PrivewModal from "../PreviewModal/PreviewModal";
-import createInvoice from '../../api/createInvoice';
 
 const ShareInvoice = () => {
-  const { formData, updateFormData } = useContext(InvoiceContext);
-  const generateInvoice = async () => {
-    const response = await createInvoice(formData);
-    return response.data;
-  }
+  const {updateFormData, invoice, generateInvoice } = useContext(InvoiceContext);
+
 
   return (
       <div className=" px-5 flex flex-col ">
         <button className="btn btn-primary m-1" onClick={() => generateInvoice()}>Generate Invoice</button>
         <div className="flex justify-between my-3">
           <button className="btn w-32">Download</button>
-          <PrivewModal />
+          <PrivewModal  fileName = {invoice.fileName}/>
         </div>
         <hr />
         <span className="text-md my-4 font-medium">Currency </span>
