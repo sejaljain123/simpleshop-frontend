@@ -5,8 +5,8 @@ import Input from "../../Input/Input";
 const InvoiceTotal = () => {
   const { updateFormData, formData, subTotal } = useContext(InvoiceContext);
 
-  const [cgst, setCGST] = useState(0);
-  const [sgst, setSGST] = useState(0);
+  const [cgst, setCGST] = useState(1.5);
+  const [sgst, setSGST] = useState(1.5);
 
   const spanStyles = "text-md py-2 text-base text-blue-600";
   const spanStyles2 = "text-md py-2 text-base font-medium";
@@ -62,7 +62,7 @@ const InvoiceTotal = () => {
                   label="Enter CGST"
                   name="gst"
                   type="number"
-                  value={cgst ? cgst : undefined}
+                  value={cgst}
                   onChange={(e) => setCGST(e.target.value)}
                   styles="w-4/5"
                 />
@@ -83,7 +83,7 @@ const InvoiceTotal = () => {
                   label="Enter SGST"
                   name="sgst"
                   type="number"
-                  value={sgst ? sgst : undefined}
+                  value={sgst}
                   onChange={(e) => setSGST(e.target.value)}
                   styles="bg-slate-00 w-4/5 "
                 />
@@ -105,8 +105,8 @@ const InvoiceTotal = () => {
           <Input
             label="Add discount"
             name="discount"
-            type="number"
-            value={formData.discount ? formData.discount : undefined}
+            type="text"
+            value={formData.discount}
             onChange={(e) => updateFormData("discount", e.target.value)}
             styles="text-right"
           />
@@ -127,7 +127,8 @@ const InvoiceTotal = () => {
           <Input
             label="Received Amount"
             name="received_amount"
-            type="number"
+            type="text"
+            value={formData.received_amount}
             onChange={(e) => updateFormData("received_amount", e.target.value)}
             styles="text-right"
           />

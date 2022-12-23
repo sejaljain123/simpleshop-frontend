@@ -1,12 +1,9 @@
 import { useState } from "react";
 import getPDF from "../../api/getPDF";
 
-const PrivewModal = () => {
+const PrivewModal = ({fileName} :any) => {
 
-    const fileName = "invoice_45.pdf";
     const [pdf, setPdf] = useState('');
-
-
     const getPDFFile = async () => {
         const response = await getPDF(fileName);
         setPdf(response.data);
