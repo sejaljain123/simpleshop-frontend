@@ -4,7 +4,7 @@ import Input from "../../Input/Input";
 
 const InvoiceTotal = () => {
   const { updateFormData, formData, subTotal } = useContext(InvoiceContext);
-
+  
   const [cgst, setCGST] = useState(1.5);
   const [sgst, setSGST] = useState(1.5);
 
@@ -14,7 +14,12 @@ const InvoiceTotal = () => {
 
   const cal_cgst = (subTotal * cgst) / 100;
   const cal_sgst = (subTotal * sgst) / 100;
-  const totalAmount = subTotal + cal_cgst + cal_sgst - formData.discount;
+  let totalAmount = 0;
+  {formData.gst ? 
+    totalAmount = subTotal + cal_cgst + cal_sgst - formData.discount
+  : totalAmount = subTotal - formData.discount
+  }
+  
   const balanceAmount = totalAmount - formData.received_amount;
 
   return (
