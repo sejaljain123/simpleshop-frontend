@@ -6,17 +6,20 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Invoice from './pages/Invoice/Invoice';
 import Login from './pages/Login/Login';
 import Landing from './pages/Landing/Landing';
+import InvoiceState from './context/InvoiceContext/InvoiceState';
 
 function App() {
   return (
     <AuthState>
-    <Routes>
-    <Route path="/" element={<Landing/>} />
-    <Route path="/dashboard" element={<Dashboard/>} />
-    <Route path="*" element={<h1>404 Not Found</h1>} />
-    <Route path="/invoice" element={<Invoice />} />
-    <Route path="/login" element={<Login />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+        <Route path="/invoice" element={<InvoiceState>
+          <Invoice />
+        </InvoiceState>} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </AuthState>
   );
   ;

@@ -10,7 +10,10 @@ const PrivewModal = ({fileName} :any) => {
     };
     return (
         <>
-            <label htmlFor="my-modal-4" className="btn w-32" onClick={getPDFFile}>Preview</label>
+           {fileName ? <div className="indicator">
+        <span className="indicator-item badge badge-secondary"></span>
+        <label htmlFor="my-modal-4" className="btn w-32" onClick={getPDFFile} >Preview</label>
+          </div> :  <button className="btn w-32" disabled>Preview</button> }
             <input type="checkbox" id="my-modal-4" className="modal-toggle" />
             <label htmlFor="my-modal-4" className="modal cursor-pointer">
                 <label className="modal-box relative h-[80vh] w-[60rem]" htmlFor="">

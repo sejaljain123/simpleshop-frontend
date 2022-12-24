@@ -1,11 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import Button from '../../components/Button/Button';
+import { useContext, useEffect } from "react";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Dashboard = () => {
     const navigate = useNavigate();
+    const {isAuthenticated} = useContext(AuthContext);
+    useEffect(() => {
+        if(!isAuthenticated){
+            navigate('/login');
+        }
+    }, [isAuthenticated]);
 
+    
     return (
-        <div className="hero min-h-screen" style={{ backgroundImage: "url('https://media.istockphoto.com/id/1338646661/photo/gold-jewelry-diamond-rings-show-in-luxury-retail-store-window-display-showcase.jpg?b=1&s=170667a&w=0&k=20&c=IjIyYsOhjFangGZVqki_9YHTtbN3JBFyQs7GXPA_eV0=')" }}>
+        <div data-theme="night" className="hero min-h-screen" style={{ backgroundImage: "url('https://media.istockphoto.com/id/1338646661/photo/gold-jewelry-diamond-rings-show-in-luxury-retail-store-window-display-showcase.jpg?b=1&s=170667a&w=0&k=20&c=IjIyYsOhjFangGZVqki_9YHTtbN3JBFyQs7GXPA_eV0=')" }}>
             <div className="hero-overlay bg-opacity-60"></div>
 
 

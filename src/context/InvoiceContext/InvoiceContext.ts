@@ -13,6 +13,7 @@ const InvoiceContext = createContext({
     fileName: "",
   },
   generateInvoice: () => { },
+  error: false,
 })
 
 export default InvoiceContext

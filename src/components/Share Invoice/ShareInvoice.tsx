@@ -10,9 +10,15 @@ const ShareInvoice = () => {
   return (
       <div className=" px-5 flex flex-col ">
         <button className="btn btn-primary m-1" onClick={() => generateInvoice()}>Generate Invoice</button>
+        
         <div className="flex justify-between my-3">
+          {invoice.fileName ?  <div className="indicator">
+        <span className="indicator-item badge badge-secondary"></span>
           <button className="btn w-32">Download</button>
-          <PrivewModal  fileName = {invoice.fileName}/>
+          </div> :           <button className="btn w-32" disabled>Download</button>
+ }
+      
+          <PrivewModal fileName = {invoice.fileName}/>
         </div>
         <hr />
         <span className="text-md my-4 font-medium">Currency </span>

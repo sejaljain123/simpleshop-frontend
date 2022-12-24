@@ -4,7 +4,7 @@ import Input from "../../Input/Input";
 import InvoiceContext from '../../../context/InvoiceContext/InvoiceContext';
 
 const InvoiceHeader = () => {
-  const { updateFormData } = useContext (InvoiceContext);
+  const {formData, updateFormData } = useContext (InvoiceContext);
   return(
     <div className="flex justify-between  w-full ">
         <div className="flex items-center">
@@ -12,6 +12,7 @@ const InvoiceHeader = () => {
           <Input
             label="Date"
             name="date"
+            value = {formData.date}
             type="date"
             onChange={(e) => updateFormData("date", e.target.value)}
           />

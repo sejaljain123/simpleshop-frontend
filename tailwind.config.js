@@ -4,4 +4,7 @@ module.exports = {
     extend: {    animation: ['group-hover'],},
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["winter"],
+  },
 }

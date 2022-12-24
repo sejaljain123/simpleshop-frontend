@@ -3,7 +3,7 @@ import InvoiceContext from '../../../context/InvoiceContext/InvoiceContext';
 import Input from "../../Input/Input";
 
 const InvoiceAddress = () => {
-  const {updateFormData} = useContext(InvoiceContext);
+  const {formData, updateFormData} = useContext(InvoiceContext);
   return(
     <div className="flex justify-between mt-4">
         <div className="flex flex-col">
@@ -19,6 +19,7 @@ const InvoiceAddress = () => {
           <Input
             label="Name"
             name="name"
+            value={formData.customer_name}
             type="text"
             onChange={(e) => updateFormData("customer_name", e.target.value)}
             styles=""

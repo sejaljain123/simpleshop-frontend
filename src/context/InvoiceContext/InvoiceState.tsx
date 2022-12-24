@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import invoiceData from "../../components/InvoiceTemplate/InvoiceData";
 import InvoiceContext from "./InvoiceContext";
 import createInvoice from "../../api/createInvoice";
+import getInvoiceNumber from "../../api/getInvoiceNumber";
 
 const InvoiceState = (props: any) => {
   const [formData, setFormData] = useState(invoiceData);
   const [items, setItems] = useState({});
   const [subTotal, setSubTotal] = useState(0.0);
+  const [error, setError] = useState(false);
   const [invoice, setInvoice] = useState({
     invoice_id: 0,
     fileName: "",
@@ -15,12 +17,20 @@ const InvoiceState = (props: any) => {
 
   const generateInvoice = async () => {
     const response = await createInvoice(formData);
+    if(!response){
+    setError(true); 
+   }
+    if(response.success){
+    setError(false);
     setInvoice({
       invoice_id: response.data.invoice_id,
       fileName: response.data.fileName,
     });
-    return;
-  }
+    setFormData({
+      ...invoiceData,
+    });
+    }
+    }
   
   const updateFormData = (field: string, value: any) => {
     setFormData({
@@ -88,7 +98,8 @@ const InvoiceState = (props: any) => {
         removeItem,
         subTotal,
         invoice,
-        generateInvoice
+        generateInvoice,
+        error,
       }}
     >
       {props.children}
